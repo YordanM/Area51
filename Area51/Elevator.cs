@@ -65,7 +65,7 @@ namespace Area51
             Console.WriteLine("Base is open.");
             Thread.Sleep(10000);
             Console.WriteLine("Base is closing.");
-            /*GoHomeSignal.Set();*/
+            GoHomeSignal.Set();
         }
     }
 }

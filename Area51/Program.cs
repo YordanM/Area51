@@ -12,7 +12,7 @@ class Program
 
         var agentThreads = new List<Thread>();
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 1; i++)
         {
             Agent agent = new Agent(elevator, randomSecurity)
             {

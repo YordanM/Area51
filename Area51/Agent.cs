@@ -8,7 +8,7 @@ namespace Area51
 {
     internal class Agent
     {
-        public enum Place { Home, Elevator, G, S, T1, T2 }
+        public enum Place { Home, G, S, T1, T2 }
 
         public enum Security { Confidential, Secret, TopSecret }
 
@@ -30,7 +30,7 @@ namespace Area51
         {
             while (true)
             {
-                Thread.Sleep(1000);
+                /*Thread.Sleep(1000);*/
                 //Going to base
                 if (Throw(70))
                 {
@@ -45,7 +45,7 @@ namespace Area51
                     while (true)
                     {
                         //Go to Ground floor
-                        if (Throw(20))
+                        if (Throw(25))
                         {
                             //Agent could enter
                             if (elevator.TryExit(this, Place.G.ToString()))
@@ -61,7 +61,7 @@ namespace Area51
                             }
                         }
                         //Go to Secret floor
-                        else if (Throw(20))
+                        else if (Throw(25))
                         {
                             //Agent could enter
                             if (elevator.TryExit(this, Place.S.ToString()))
@@ -77,7 +77,7 @@ namespace Area51
                             }
                         }
                         //Go to T1 floor
-                        else if (Throw(20))
+                        else if (Throw(25))
                         {
                             //Agent could enter
                             if (elevator.TryExit(this, Place.T1.ToString()))
@@ -93,7 +93,7 @@ namespace Area51
                             }
                         }
                         //Go to T2 floor
-                        else if (Throw(20))
+                        else if (Throw(25))
                         {
                             //Agent could enter
                             if (elevator.TryExit(this, Place.T2.ToString()))
@@ -108,23 +108,25 @@ namespace Area51
                                 Console.WriteLine($"{Id} don't have needed credentials to enter the T1 floor.");
                             }
                         }
-                        Thread.Sleep(200);
+                        /*Thread.Sleep(200);*/
                     }
                 }
                 //Should go home?
-                else if (Throw(50))
+                else if (Throw(30))
                 {
-                    //Try to enter in the elevator
-                    elevator.TryEnter(this);
-                    Thread.Sleep(100);
-                    elevator.GoHome(this);
-                    Console.WriteLine($"{Id} is going home.");
+                    if (this.currentPlace != Place.Home)
+                    {
+                        //Try to enter in the elevator
+                        elevator.TryEnter(this);
+                        Thread.Sleep(100);
+                        elevator.GoHome(this);
+                        Console.WriteLine($"{Id} is going home.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{Id} is home.");
+                    }
                     break;
-                }
-                //Should change floors?
-                else
-                {
-                    Console.WriteLine($"{Id} is changing floors.");
                 }
             }
         }
