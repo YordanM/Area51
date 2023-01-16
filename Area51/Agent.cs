@@ -30,7 +30,7 @@ namespace Area51
         {
             while (true)
             {
-                /*Thread.Sleep(1000);*/
+                Thread.Sleep(1000);
                 //Going to base
                 if (Throw(70))
                 {
@@ -108,7 +108,7 @@ namespace Area51
                                 Console.WriteLine($"{Id} don't have needed credentials to enter the T1 floor.");
                             }
                         }
-                        /*Thread.Sleep(200);*/
+                        Thread.Sleep(200);
                     }
                 }
                 //Should go home?
