@@ -16,7 +16,7 @@ namespace Area51
 
         public Elevator()
         {
-            semaphore = new Semaphore(1, capacity);
+            semaphore = new Semaphore(capacity, capacity);
             agents = new List<Agent>();
             GoHomeSignal = new ManualResetEvent(false);
         }
@@ -39,16 +39,19 @@ namespace Area51
             if (agent.securityLevel.ToString() == "Confidential" && floor == "G")
             {
                 lock (agents) agents.Remove(agent);
+                semaphore.Release();
                 return true;
             }
             else if (agent.securityLevel.ToString() == "Secret" && (floor == "G" || floor == "S"))
             {
                 lock (agents) agents.Remove(agent);
+                semaphore.Release();
                 return true;
             }
             else if (agent.securityLevel.ToString() == "TopSecret")
             {
                 lock (agents) agents.Remove(agent);
+                semaphore.Release();
                 return true;
             }
             else 
@@ -58,6 +61,7 @@ namespace Area51
         public void GoHome(Agent agent)
         {
             lock (agents) agents.Remove(agent);
+            semaphore.Release();
         }
 
         public void Work()

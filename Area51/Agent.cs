@@ -118,13 +118,12 @@ namespace Area51
                     {
                         //Try to enter in the elevator
                         elevator.TryEnter(this);
-                        Thread.Sleep(100);
                         elevator.GoHome(this);
                         Console.WriteLine($"{Id} is going home.");
                     }
                     else
                     {
-                        Console.WriteLine($"{Id} is home.");
+                        Console.WriteLine($"{Id} is staying home.");
                     }
                     break;
                 }
